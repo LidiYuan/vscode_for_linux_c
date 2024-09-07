@@ -1,0 +1,20 @@
+{
+  "name": "vscode-for-linux-c",
+  "displayName": "vscode_for_linux_c",
+  "description": "VSCode Snippets Plugin for Rapid Development of Linux C.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "c",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  }
+}
