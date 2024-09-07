@@ -1,0 +1,12 @@
+//用于 目录的操作
+{
+    "dir header": {
+        "scope":"c",
+		"prefix": "dir_header",
+		"body": [           
+			"#include <sys/types.h>",
+			"#include <dirent.h>"
+		],
+		"description": "opendir header file"
+    }
+}

@@ -1,0 +1,40 @@
+//用于 .h头文件
+{
+    "header_template": {
+		"scope":"h",
+		"prefix": "header_template",
+		"body": [           
+			"#ifndef _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_",
+            "#define _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_",
+			"",
+			"#endif // _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_"
+		],
+		"description": "Template for generating header files."
+    },
+    "#include \"$TM_FILENAME_BASE.h\"": {
+		"scope":"c,h",
+		"prefix": "cfh",
+		"body": [           
+			"#include \"$TM_FILENAME_BASE.h\""
+		],
+		"description": "Generate #include \"$TM_FILENAME_BASE.h\"."
+    },
+    "#include <xx>": {
+		"scope":"c,h",
+		"prefix": "#i<",
+		"body": [           
+			"#include <$0>"
+		],
+		"description": "Generate #include <xx.h>."
+    },
+
+    "#include \"xx\"": {
+		"scope":"c,h",
+		"prefix": "#i",
+		"body": [           
+			"#include \"$0\""
+		],
+		"description": "Generate #include \"xx\"."
+    },
+
+}
