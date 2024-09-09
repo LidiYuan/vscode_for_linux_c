@@ -26,6 +26,10 @@
       {
         "language": "c",
         "path": "./snippets/lc_str.json"
+      },
+      {
+        "language": "c",
+        "path": "./snippets/lc_file.json"
       }
     ]
   }

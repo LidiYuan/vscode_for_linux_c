@@ -1,1 +1,50 @@
-{}
+{
+    "lcfile_foeach_line": {
+        "scope":"c",
+		"prefix": "lcfile_foeach_line",
+		"body": [
+            "FILE *lc_fp=NULL;",
+            "char *lc_tmpptr=NULL;",
+            "char lc_tmpbuff[512]={0};",
+			"",
+            "/*filePathToRead: Files to be read*/",
+			"for(lc_fp=fopen(${1:filePathToRead},\"r\"),lc_tmpptr=(NULL!=lc_fp)?fgets(lc_tmpbuff,sizeof(lc_tmpbuff),lc_fp):NULL; NULL!=lc_tmpptr;lc_tmpptr=fgets(lc_tmpbuff,sizeof(lc_tmpbuff),lc_fp)){",
+			"",
+            "\tprintf(\"%s\\n\",lc_tmpbuff);",
+            "\tmemset(lc_tmpbuff,0,sizeof(lc_tmpbuff));",
+            "\t",                     			
+			"}",
+			"",
+			"if( NULL != lc_fp ) { fclose(lc_fp); lc_fp=NULL; }"
+		],
+		"description": "Use fgets() to read every line of a text file."
+	},
+    "lcfile_access_FOK": {
+        "scope":"c",
+		"prefix": "lcfile_access_FOK",
+		"body": [
+            "/*filePath: The file path to be determined, header: unistd.h*/",
+			"if(access(${1:filePath}, F_OK) == 0){",
+			"",
+            "\tprintf(\"file find\\n\");",
+            "\t",                     			
+			"}"
+		],
+		"description": "Determine whether a file exists (not in a directory) through access()."
+	},
+    "lcfile_size": {
+        "scope":"c",
+		"prefix": "lcfile_size",
+		"body": [
+            "struct stat lc_st;",
+            "",
+            "/*filePath:file path.*/",
+			"if(0 == lstat(${1:filepath},&lc_st)){",
+			"",
+            "\tprintf(\"file size:%ld\\n\",lc_st.st_size);",
+            "\t",                     			
+			"}"
+		],
+		"description": "Obtain the file size through lstat()."
+	}
+}

@@ -35,4 +35,14 @@
 		],
 		"description": "Generate #include <sys/types.h> #include <dirent.h>."
     },
+	"#include <stat.h>": {
+		"scope":"c,h",
+		"prefix": "#stat",
+		"body": [           
+			"#include <sys/types.h>",
+       		"#include <sys/stat.h>",
+       		"#include <unistd.h>"
+		],
+		"description": "Generate #include <stat.h>."
+    }
 }
