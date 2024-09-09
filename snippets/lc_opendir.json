@@ -1,16 +1,6 @@
-//用于 目录的操作
 {
-    "dir header": {
-        "scope":"c",
-		"prefix": "dir_header",
-		"body": [           
-			"#include <sys/types.h>",
-			"#include <dirent.h>"
-		],
-		"description": "opendir header file"
-    },
-    "dir foreach": {
-		"prefix": "dirforeach_all",
+    "lcdir_foreach": {
+		"prefix": "lcdir_foreach",
 		"body": [           
 			"DIR *dir=NULL;",
 			"struct dirent *dent=NULL;",
@@ -25,11 +15,11 @@
 			"",
 			"if( NULL != dir ) { closedir(dir); dir=NULL; }"
 		],
-		"description": "Will traverse dir "
+		"description": "Traverse directories through readir() "
 	},
-    "dir filter not dir": {
+    "lcdir_filter_notdir": {
         "scope":"c", 
-		"prefix": "dirfilter_notdir",
+		"prefix": "lcdir_filter_notdir",
 		"body": [           
 			"DIR *dir=NULL;",
 			"struct dirent *dent=NULL;",
@@ -44,34 +34,36 @@
 			"",
 			"if( NULL != dir ) { closedir(dir); dir=NULL; }",
              ],
-             "description": "Filter out all non directory files. "
+             "description": "Use readdir() to filter out all non directory files. "
 	},
-    "dir filter dir": {
+    "lcdir_filter_dir": {
 		"prefix": "dirfilter_dir",
 		"body": [           
 			"DIR *dir=NULL;",
 			"struct dirent *dent=NULL;",
 			"",
 			"for(dir=opendir(\"$1\"),dent=(NULL!=dir)?readdir(dir):NULL ; NULL!=dent; dent=readdir(dir)){",
-			"",
+			"",			
             "\tif(DT_DIR!=dent->d_type){ continue; }",
-            "",
+            "\tif(!strcmp(dent->d_name,\".\") || !strcmp(dent->d_name,\"..\")){ continue; }",
+			"",
             "\tprintf(\"fname=%s %ld\\n\",dent->d_name,dent->d_ino);",
             "\t$2",                     			
 			"}",			
 			"",
 			"if( NULL != dir ) { closedir(dir); dir=NULL; }"
 		],
-		"description": "Filter out all directories. "
+		"description": "Use readdir() to filter out all directory files. "
 	},
-    "dir filter regular or link file": {
-		"prefix": "dirfilter_rl_file",
+    "lcdir_filter_rl": {
+		"prefix": "lcdir_filter_rl",
 		"body": [           
 			"DIR *dir=NULL;",
 			"struct dirent *dent=NULL;",
 			"",
 			"for(dir=opendir(\"$1\"),dent=(NULL!=dir)?readdir(dir):NULL ; NULL!=dent; dent=readdir(dir)){",
 			"",
+			"\tif(!strcmp(dent->d_name,\".\") || !strcmp(dent->d_name,\"..\")){ continue; }",
             "\tif((DT_LINK!=dent->d_type) && (DT_REG!=dent->d_type)){ continue; }",
             "",
             "\tprintf(\"fname=%s %ld\\n\",dent->d_name,dent->d_ino);",
@@ -80,11 +72,11 @@
 			"",
 			"if( NULL != dir ) { closedir(dir); dir=NULL; }"
 		],
-		"description": "Filter out all regular files and linked files. "
+		"description": "Use readdir() to filter out all regular and linked files. "
 	},
-    // 过滤 char 或 block 文件
-    "dir filter char or block file": {
-		"prefix": "dirfilter_cb_file",
+    
+    "lcdir_filter_cb": {
+		"prefix": "lcdir_filter_cb",
 		"body": [
 			"DIR *dir=NULL;",
 			"struct dirent *dent=NULL;",
@@ -99,7 +91,26 @@
 			"",
 			"if( NULL != dir ) { closedir(dir); dir=NULL; }"
 		],
-		"description": "Filter out all char files and block files. "
+		"description": "Use readdir() to filter out all characters or block files. "
+	},
+	"lcdir_filter_sp": {
+		"prefix": "lcdir_filter_sp",
+		"body": [
+			"DIR *dir=NULL;",
+			"struct dirent *dent=NULL;",
+			"",
+			"for(dir=opendir(\"$1\"),dent=(NULL!=dir)?readdir(dir):NULL ; NULL!=dent; dent=readdir(dir)){",
+			"",
+            "\tif((DT_FIFO!=dent->d_type) && (DT_SOCK!=dent->d_type)){ continue; }",
+            "",
+            "\tprintf(\"fname=%s %ld\\n\",dent->d_name,dent->d_ino);",
+            "\t$2",                     			
+			"}",
+			"",
+			"if( NULL != dir ) { closedir(dir); dir=NULL; }"
+		],
+		"description": "Use readdir() to filter out all socket or pipe files. "
 	}
+	
 
 }

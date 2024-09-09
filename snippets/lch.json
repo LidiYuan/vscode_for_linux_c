@@ -1,8 +1,7 @@
-//用于 .h头文件
 {
-    "header_template": {
+    "lch": {
 		"scope":"h",
-		"prefix": "header_template",
+		"prefix": "lch",
 		"body": [           
 			"#ifndef _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_",
             "#define _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_",
@@ -11,19 +10,19 @@
 		],
 		"description": "Template for generating header files."
     },
-    "#include \"$TM_FILENAME_BASE.h\"": {
-		"scope":"c,h",
-		"prefix": "cfh",
+    "Add #include \"$TM_FILENAME_BASE.h\"": {
+		"scope":"c",
+		"prefix": "lcfh",
 		"body": [           
 			"#include \"$TM_FILENAME_BASE.h\""
 		],
 		"description": "Generate #include \"$TM_FILENAME_BASE.h\"."
     },
-    "#include <xx>": {
+    "#include <xx.h>": {
 		"scope":"c,h",
 		"prefix": "#i<",
 		"body": [           
-			"#include <$0>"
+			"#include <$0.h>"
 		],
 		"description": "Generate #include <xx.h>."
     },

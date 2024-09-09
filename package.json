@@ -13,11 +13,19 @@
     "snippets":[
       {
         "language": "c",
-        "path": "./snippets/linux_c_dir.code-snippets"
+        "path": "./snippets/lc_opendir.json"
       },
       {
         "language": "c",
-        "path": "./snippets/linux_c_h_header.code-snippets"
+        "path": "./snippets/lch.json"
+      },
+      {
+        "language": "c",
+        "path": "./snippets/lch_include.json"
+      },
+      {
+        "language": "c",
+        "path": "./snippets/lc_str.json"
       }
     ]
   }

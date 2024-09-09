@@ -1,0 +1,38 @@
+//用于 .h头文件
+{
+    "#include <string.h>": {
+		"scope":"c,h",
+		"prefix": "#string",
+		"body": [           
+			"#include <string.h>"
+		],
+		"description": "Generate #include <string.h>."
+    },
+    "#include <stdio/stdlib.h>": {
+		"scope":"c,h",
+		"prefix": "#std",
+		"body": [           
+			"#include <stdio.h>",
+			"#include <stdlib.h>",
+			"#include <unistd.h>"
+		],
+		"description": "Generate #include <stdio.h> #include <stdlib.h>."
+    },
+	"#include <errno.h>": {
+		"scope":"c,h",
+		"prefix": "#err",
+		"body": [           
+			"#include <errno.h>"
+		],
+		"description": "Generate #include <errno.h>."
+    },
+	"#include <opendir 相关的头文件>": {
+		"scope":"c,h",
+		"prefix": "#opendir",
+		"body": [           
+			"#include <sys/types.h>",
+			"#include <dirent.h>"
+		],
+		"description": "Generate #include <sys/types.h> #include <dirent.h>."
+    },
+}

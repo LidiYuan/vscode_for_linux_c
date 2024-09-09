@@ -1,0 +1,21 @@
+{
+    "lcstr_foreach_strtok": {
+        "scope": "c",
+		"prefix": "lcstr_split_foreach",
+		"body": [
+            "char *lc_save=NULL;",
+            "char *lc_tmpstr=NULL;",
+            "char *lc_result=NULL;",
+			"",
+            "/*strBUffer: String to be split;", 
+            "  strDelimiter: It is a delimiter, please fill in a string such as \":\"*/",
+			"for (lc_tmpstr=${1:strBuffer};  NULL!=(lc_result=strtok_r(lc_tmpstr,${2:strDelimiter},&lc_save)); lc_tmpstr = NULL){",
+			"", 
+            "\tprintf(\"substr=%s \\n\",lc_result);",
+            "\t$3",                     			
+			"}",
+			""
+		],
+		"description": "Use strtok_r() to divide a string into individual substrings. "
+	}
+}
