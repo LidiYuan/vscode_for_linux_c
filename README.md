@@ -6,13 +6,15 @@
 |前缀|作用|其它|
 |--------|----------|----------|
 |**lch**|头文件模板 ,如<br> `#ifndef _XXX_H_ ` <br> `#define _XXX_H_ `<br> `/* code */`  <br>` #endif`| 无
-|**lcfh**|在xxc中加入 `#include "xx.h"` 头文件引用| 无
+|**lcfh**|在xx.c中加入 `#include "xx.h"` 头文件引用| 无
 |**#i**|在文件中加入 `#include ".h"` 头文件引用| 无
 |**#i<**|在文件中加入 `#include <.h>` 头文件引用| 无
 |**#string**|在文件中加入 `#include <string.h>` 头文件引用| 无
 |**#std**|在文件中加入 `#include <stdio.h>` <br> ` #include <stdlib.h>` 头文件引用| 无
 |**#err**|在文件中加入 `#include <errno.h>` <br> ` ` 头文件引用| 无
 |**#opendir**|在文件中加入 `#include <sys/types.h>` <br>  ` #include <dirent.h>` 头文件引用| 无
+|**#stat**|在文件中加入 `#include <sys/types.h>` <br>  `#include <sys/stat.h>` <br> `#include <unistd.h>` 头文件引用| 无
+
 
 
 ## 目录代码块
@@ -33,6 +35,11 @@
 |**lcstr_h**|加入目录相关的头文件<br> `#include <string.h>` |无|
 |**lcstr_split_foreach**|通过strtok_r()分隔符将字符串分割后，遍历出所有分割后的子串(**注意!!**` 此操作会修改原字符串内容)。 |无|
 
-
-
+## 文件代码块
+### 前缀介绍
+|前缀|作用|其它|
+|------|------|-----|
+|**lcfile_foeach_line**|通过`fgets()` 来遍历文件的每一行(文件需要是文本文件).|无|
+|**lcfile_access_FOK**|通过access()判断文件是否存在.|无|
+|**lcfile_size**|通过lstat()获得文件的大小.|无|
 
